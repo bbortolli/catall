@@ -1,0 +1,27 @@
+{:objects
+ {:Place {:description "a place"
+          :fields {:id {:type (non-null String)
+                        :description "Unique identifier for this place."}
+                   :name {:type (non-null String)}
+                   :modifiedat {:type (non-null String)
+                                 :description "Timestamp string representation."}}}}
+ :queries
+ {:place {:type :Place
+                :description "Retrieve a single Place by its id."
+                :args {:id {:type (non-null String)
+                            :description "Unique id for place."}}
+                :resolve :place-by-id}
+  :placeByName {:type :Place
+                  :description "Retrieve a single Place by its name."
+                  :args {:name {:type (non-null String)
+                                :description "Unique name for place."}}
+                  :resolve :place-by-name}
+  :places {:type (list :Place)
+           :description "Retrieve all Places."
+           :resolve :places}}
+ :mutations
+ {:place {:type :Place
+          :description "Create a new Place."
+          :args {:name {:type (non-null String)
+                        :description "Unique name for place."}}
+          :resolve :create-place!}}}
